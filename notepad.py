@@ -3,6 +3,9 @@ from tkinter import filedialog
 from tkinter import colorchooser
 
 #def for filemenu
+def newpad():
+    textarea.delete(1.0, END)
+    
 def openfile():
     file = filedialog.askopenfilename()
     fileopen = open(file, "r")
@@ -22,13 +25,13 @@ def savefile():
 
 #def for editmenu
 def cut():
-    pass
+    textarea.event_generate("<<Cut>>")
 
 def copy():
-    pass
+    textarea.event_generate("<<Copy>>")
 
 def paste():
-    pass
+    textarea.event_generate("<<Paste>>")
 
 def fcolor():
     color = colorchooser.askcolor()
@@ -51,6 +54,7 @@ window.config(menu=menubar)
 
 filemenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="File", menu=filemenu)
+filemenu.add_command(label="New", command=newpad)
 filemenu.add_command(label="Open", command=openfile)
 filemenu.add_command(label="Save", command=savefile)
 filemenu.add_separator()
